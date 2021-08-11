@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-image = cv.imread('starfish_1280_960.jpg', 0)
+image = cv.imread('noisy square.jpg', 0)
 #global
 ret1, threshold1 = cv.threshold(image, 127, 255, cv.THRESH_BINARY)
 
@@ -18,7 +18,7 @@ titles = ['Original', 'Global Thresholding', 'Original', 'Otsu Thresholding', 'G
 
 for i in range(6):
     plt.subplot(3, 2, i + 1), plt.imshow(images[i], cmap='gray')
-    plt.title(titles[i]), plt.xticks(), plt.yticks()
+    plt.title(titles[i]), plt.xticks([]), plt.yticks([])
 
 plt.tight_layout()
 plt.show()

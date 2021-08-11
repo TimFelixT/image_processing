@@ -27,14 +27,12 @@ image_Result = np.clip(image_Result, 0, 255)
 image_Result = image_Result.astype('uint8')
 image_Laplacian = np.clip(image_Laplacian, 0, 255)
 image_Laplacian = np.uint8(image_Laplacian)
-cv.imshow('New Sharped Image', image_Result)
 
 plt.subplot(221), plt.imshow(image_Result, cmap='gray')
 plt.title('Laplace Operator'), plt.xticks([]), plt.yticks([])
 
 bw = cv.cvtColor(image_Result, cv.COLOR_BGR2GRAY)
 _, bw = cv.threshold(bw, 40, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)
-cv.imshow('Binary Image', bw)
 
 plt.subplot(222), plt.imshow(bw, cmap='gray')
 plt.title('Schwellenwert Binarisierung'), plt.xticks([]), plt.yticks([])
@@ -42,7 +40,6 @@ plt.title('Schwellenwert Binarisierung'), plt.xticks([]), plt.yticks([])
 dist = cv.distanceTransform(bw, cv.DIST_L2, 3)
 
 cv.normalize(dist, dist, 0, 1.0, cv.NORM_MINMAX)
-cv.imshow('Distance Transform Image', dist)
 
 plt.subplot(223), plt.imshow(dist, cmap='gray')
 plt.title('Distanz Transoformation'), plt.xticks([]), plt.yticks([])
@@ -51,9 +48,8 @@ _, dist = cv.threshold(dist, 0.4, 1.0, cv.THRESH_BINARY)
 
 kernel1 = np.ones((3, 3), dtype=np.uint8)
 dist = cv.dilate(dist, kernel1)
-cv.imshow('Peaks', dist)
 
 plt.subplot(224), plt.imshow(dist, cmap='gray')
-plt.title('Dilationdd'), plt.xticks([]), plt.yticks([])
+plt.title('Dilation'), plt.xticks([]), plt.yticks([])
 
 plt.show()
